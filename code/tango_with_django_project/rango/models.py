@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# Create your models here.
 class verifiable():
 	verified = False
 	flagged = False
@@ -127,6 +128,85 @@ class UserModel(Profile):
 	def setAdmin(self, a):
 		admin = a
 
+class ContentModel():
+	uid = models.CharField(default=uuid.uuid4)
+	title = models.CharField(max_length=128)
+	artist = models.charField(max_length=128)
+	genre = models.charField(max_length=128)
+	description = models.charField(max_length=128)
+	album = models.charField(max_length=128)	
+	website = models.URLField()
+	favoritedBy = []
+	comments = []
+
+	def __init__(self):
+		uid = uuid.uuid4()
+
+	def __init__(self, uid):
+		uid = uid
+
+	def getId(self):
+		return uid
+
+	def getTitle(self):
+		return title
+
+	def setTitle(self, n):
+		title = n
+
+	def getArtist(self):
+		return artist
+
+	def setArtist(self, profile):
+		artist = profile
+
+	def getGenre(self):
+		return genre 
+
+	def setGenre(self, n):
+		genre = n
+
+	def getDescription(self):
+		return description
+
+	def setDescription(self, n):
+		description = n 
+
+	def getAlbum(self):
+		return album
+
+	def setAlbum(self, n):
+		album = name
+
+	def getMedia(self):
+		return media
+
+	def setMedia(self, n):
+		media = n
+
+	def addFavoritedBy(self, user):
+		if user not in FavoritedBy:
+			favoritedBy.append(user)
+
+	def removeFavoritedBy():
+		if user in FavoritedBy:
+			favoritedBy.remove(user)
+
+	def getFavoritedBy():
+		return favoritedBy
+
+	def addComment(comment):
+		if comment not in comments:
+			comments.append(comment)
+
+	def removeComment():
+		if comment in comments:
+			comments.remove(comment)
+
+	def getComments(self):
+		return comments
+
+
 class GarageModel(Profile):
 	members = []
 
@@ -141,23 +221,4 @@ class GarageModel(Profile):
 	def getMembers(self):
 		return members
 
-# stream
-class StreamModel(models.Model):
-	NEWEST = "0"
-	FEATURED = "1"
 
-	SORTBY_CHOICES = (
-		(NEWEST: "Newest"),
-		(FEATURED: "Featured"),
-	)
-
-	content = []
-	sortBy = models.CharField(max_length=1,
-							  choices=SORTBY_CHOICES,
-							  default=NEWEST)
-
-	def getContent(self):
-		return content
-
-	def sort(self, value):
-		sortBy = value
