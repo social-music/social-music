@@ -1,7 +1,6 @@
 from django.db import models
 import uuid
 
-# Create your models here.
 class verifiable():
 	verified = False
 	flagged = False
@@ -142,4 +141,23 @@ class GarageModel(Profile):
 	def getMembers(self):
 		return members
 
+# stream
+class StreamModel(models.Model):
+	NEWEST = "0"
+	FEATURED = "1"
 
+	SORTBY_CHOICES = (
+		(NEWEST: "Newest"),
+		(FEATURED: "Featured"),
+	)
+
+	content = []
+	sortBy = models.CharField(max_length=1,
+							  choices=SORTBY_CHOICES,
+							  default=NEWEST)
+
+	def getContent(self):
+		return content
+
+	def sort(self, value):
+		sortBy = value
