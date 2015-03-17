@@ -261,7 +261,7 @@ class Media(models.Model):
 		return uid
 
 class Audio(Media):
-	numPlays = models.IntegerField()
+	numPlays = models.IntegerField(default=0)
 
 	def getNumPlays(self):
 		return numPlays
