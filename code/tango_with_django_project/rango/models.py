@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-# Create your models here.
+#Verifiable
 class verifiable():
 	verified = False
 	flagged = False
@@ -19,6 +19,7 @@ class verifiable():
 		verified = verification
 		flagged = False
 
+#Profile
 class Profile(verifiable, models.Model):
 	uid = models.CharField(default=uuid.uuid4)
 	name = models.CharField(max_length=128)
@@ -69,6 +70,7 @@ class Profile(verifiable, models.Model):
 	def getFollowers(self):
 		return followers
 
+#UserModel
 class UserModel(Profile):
 	email = models.EmailField()
 	passwordHash = models.CharField(max_length=256)
@@ -128,6 +130,7 @@ class UserModel(Profile):
 	def setAdmin(self, a):
 		admin = a
 
+#ContentModel
 class ContentModel():
 	uid = models.CharField(default=uuid.uuid4)
 	title = models.CharField(max_length=128)
@@ -206,7 +209,7 @@ class ContentModel():
 	def getComments(self):
 		return comments
 
-
+#GarageModel
 class GarageModel(Profile):
 	members = []
 
@@ -239,3 +242,68 @@ class StreamModel(models.Model):
  	def sort(self, value):
  		sortBy = value
 
+# Media
+class Media(models.Model):
+	filename = models.CharField(max_length=180)
+	uid = models.CharField(default=uuid.uuid4)
+
+	def __init__(self, uid, fn):
+		self.uid = uid
+		filename = fn
+
+	def getFilename(self):
+		return filename
+
+	def setFilename(self, fn):
+		filename = fn
+
+	def getId(self):
+		return uid
+
+class Audio(Media):
+	numPlays = models.IntegerField()
+
+	def getNumPlays(self):
+		return numPlays
+
+	def addPlay(self):
+		numPlays += 1
+
+class Tab(Media):
+	CHORDS = "0"
+	TABS = "1"
+	TYPE_CHOICES = (
+		(CHORDS:"Chords"),
+		(TABS:"Tabs"),
+		)
+
+	type = models.CharField(max_length=180, choices=TYPE_CHOICES, default=CHORDS)
+	key = models.CharField(max_length=180)
+
+	def getType(self):
+		return type
+
+	def setType(self, t):
+		type = t
+
+	def getKey(self):
+		return key
+
+	def setKey(self, k):
+		key = k
+
+class SheetMusic(Media):
+	instrument = models.CharField(max_length=180)
+	key = models.CharField(max_length=180)
+
+	def getInstrument(self):
+		return instrument
+
+	def setInstrument(self, inst):
+		instrument = inst
+
+	def getKey(self):
+		return key
+
+	def setKey(self, k):
+		key = k
