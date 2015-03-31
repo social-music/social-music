@@ -216,33 +216,33 @@ class CommentModel(Content):
     comment = models.CharField()
     timestamp = models.DateTimeField()
 
-def __init__(self):
-    uid = uuid.uuid4()
+	def __init__(self):
+	    uid = uuid.uuid4()
 
-def __init__(self, newID):
-    uid = newId
+	def __init__(self, newID):
+	    uid = newId
 
-def getId():
-    return uid
+	def getId():
+	    return uid
 
-def getAuthor():
-    return author
+	def getAuthor():
+	    return author
 
-def setAuthor(newAuthor):
-    author = newAuthor
+	def setAuthor(newAuthor):
+	    author = newAuthor
 
-def getComment():
-    return comment
+	def getComment():
+	    return comment
 
-def setComment(newComment):
-    comment = newComment
+	def setComment(newComment):
+	    comment = newComment
 
-def getTimeStamp():
-    return timestamp
+	def getTimeStamp():
+	    return timestamp
 
-def setTimeStamp():
-    currTime = time.time()
-        timestamp = datetime.datetime.fromtimestamp(currTime).strftime('%Y-%m-%d %H:%M:%S')
+	def setTimeStamp():
+	    currTime = time.time()
+	        timestamp = datetime.datetime.fromtimestamp(currTime).strftime('%Y-%m-%d %H:%M:%S')
 
 #GarageModel
 class GarageModel(Profile):
