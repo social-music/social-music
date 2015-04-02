@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from djangotoolbox.fields import ListField
 import uuid
 
 #Verifiable
@@ -21,75 +23,57 @@ class verifiable():
 
 #Profile
 class Profile(verifiable, models.Model):
-	uid = models.CharField(default=uuid.uuid4)
-	name = models.CharField(max_length=128)
-	website = models.URLField()
-	ownedcontent = []
-	followers = []
+	#Link Profile to a User model instance.
+	user = models.OneToOneField(User)
 
-	def __init__(self):
-		uid = uuid.uuid4()
+	#Additional attributes
+	website = models.URLField(blank=True)
+	ownedcontent = ListField(models.ForeignKey('ContentModel'))
+	followers = ListField(models.ForeignKey('UserModel'))
 
-	def __init__(self, uid):
-		uid = uid
-
-	def getId(self):
-		return uid
-
-	def getName(self):
-		return name
-
-	def setName(self, n):
-		name = n
-
-	def getWebsite(self):
-		return website
-
-	def setWebsite(self, site):
-		website = site
+	#Unicode method
+	def __unicode__(self):
+		return self.user.username
 
 	def addContent(self, content):
-		if content not in ownedcontent:
-			ownedcontent.append(content)
+		if content not in favorites:
+			favorites.append(content)
 
 	def removeContent(self, content):
-		if content in ownedcontent:
-			ownedcontent.remove(content)
+		if content in favorites:
+			favorites.remove(content)
 
 	def getContent(self):
-		return ownedcontent
+		return favorites
 
-	def addFollower(self, user):
-		if user not in followers:
-			followers.append(user)
+	def addFollower(self, content):
+		if content not in favorites:
+			favorites.append(content)
 
-	def removeFollower(self, user):
-		if user in followers:
-			followers.remove(user)
+	def removeFollower(self, content):
+		if content in favorites:
+			favorites.remove(content)
 
 	def getFollowers(self):
-		return followers
+		return favorites
 
 #UserModel
 class UserModel(Profile):
-	email = models.EmailField()
-	passwordHash = models.CharField(max_length=256)
-	favorites = []
-	garages = []
-	following = []
-	admin = False
+	favorites = ListField(models.ForeignKey('ContentModel'))
+	garages = ListField(models.ForeignKey('GarageModel'))
+	following = ListField(models.ForeignKey('self'))
 
-	def getEmail(self):
-		return email
+	# def getEmail(self):
+	# 	return email
 
-	def setEmail(self, address):
-		email = address
+	# def setEmail(self, address):
+	# 	email = address
 
-	def getPasswordHash(self):
-		return passwordHash
+	# def getPasswordHash(self):
+	# 	return passwordHash
 
-	def setPasswordHash(self,passhash):
-		passwordHash = passhash
+	# def setPasswordHash(self,passhash):
+	# 	passwordHash = passhash
 
 	def addFavorite(self, content):
 		if content not in favorites:
@@ -124,11 +108,26 @@ class UserModel(Profile):
 	def getFollowing(self):
 		return following
 
-	def isAdmin(self):
-		return admin
+	# def isAdmin(self):
+	# 	return admin
 
-	def setAdmin(self, a):
-		admin = a
+	# def setAdmin(self, a):
+	# 	admin = a
+
+#GarageModel
+class GarageModel(Profile):
+	members = ListField(models.ForeignKey('UserModel'))
+
+	def addMember(self, user):
+		if user not in members:
+			members.append(user)
+
+	def removeMember(self, user):
+		if user in members:
+			members.remove(user)
+
+	def getMembers(self):
+		return members
 
 #ContentModel
 class ContentModel():
@@ -208,21 +207,6 @@ class ContentModel():
 
 	def getComments(self):
 		return comments
-
-#GarageModel
-class GarageModel(Profile):
-	members = []
-
-	def addMember(self, user):
-		if user not in members:
-			members.append(user)
-
-	def removeMember(self, user):
-		if user in members:
-			members.remove(user)
-
-	def getMembers(self):
-		return members
 
 # stream
 class StreamModel(models.Model):
