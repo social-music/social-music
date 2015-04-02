@@ -21,7 +21,7 @@ class verifiable():
 
 #Profile
 class Profile(verifiable, models.Model):
-	uid = models.CharField(default=uuid.uuid4)
+	uid = models.CharField(max_length=20, default=uuid.uuid4)
 	name = models.CharField(max_length=128)
 	website = models.URLField()
 	ownedcontent = []
@@ -132,12 +132,12 @@ class UserModel(Profile):
 
 #ContentModel
 class ContentModel():
-	uid = models.CharField(default=uuid.uuid4)
+	uid = models.CharField(max_length=20, default=uuid.uuid4)
 	title = models.CharField(max_length=128)
-	artist = models.charField(max_length=128)
-	genre = models.charField(max_length=128)
-	description = models.charField(max_length=128)
-	album = models.charField(max_length=128)	
+	artist = models.CharField(max_length=128)
+	genre = models.CharField(max_length=128)
+	description = models.CharField(max_length=128)
+	album = models.CharField(max_length=128)	
 	website = models.URLField()
 	favoritedBy = []
 	comments = []
@@ -229,8 +229,8 @@ class StreamModel(models.Model):
  	NEWEST = "0"
  	FEATURED = "1"
  	SORTBY_CHOICES = (
- 		(NEWEST: "Newest"),
- 		(FEATURED: "Featured"),
+ 		(NEWEST, "Newest"),
+ 		(FEATURED, "Featured"),
  	)
 
  	content = []
@@ -245,7 +245,7 @@ class StreamModel(models.Model):
 # Media
 class Media(models.Model):
 	filename = models.CharField(max_length=180)
-	uid = models.CharField(default=uuid.uuid4)
+	uid = models.CharField(max_length=20, default=uuid.uuid4)
 
 	def __init__(self, uid, fn):
 		self.uid = uid
@@ -273,8 +273,8 @@ class Tab(Media):
 	CHORDS = "0"
 	TABS = "1"
 	TYPE_CHOICES = (
-		(CHORDS:"Chords"),
-		(TABS:"Tabs"),
+		(CHORDS,"Chords"),
+		(TABS,"Tabs"),
 		)
 
 	type = models.CharField(max_length=180, choices=TYPE_CHOICES, default=CHORDS)
