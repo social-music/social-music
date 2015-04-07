@@ -4,7 +4,7 @@ from djangotoolbox.fields import ListField
 import uuid
 
 #Verifiable
-class verifiable():
+class verifiable(models.Model):
 	verified = False
 	flagged = False
 
@@ -22,7 +22,7 @@ class verifiable():
 		flagged = False
 
 #Profile
-class Profile(verifiable, models.Model):
+class Profile(verifiable):
 	#Link Profile to a User model instance.
 	user = models.OneToOneField(User)
 
