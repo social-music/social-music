@@ -28,8 +28,8 @@ class Profile(verifiable, models.Model):
 
 	#Additional attributes
 	website = models.URLField(blank=True)
-	ownedcontent = ListField(models.ForeignKey('ContentModel'))
-	followers = ListField(models.ForeignKey('UserModel'))
+	ownedcontent = [] #ListField(models.ForeignKey('ContentModel'))
+	followers = [] #ListField(models.ForeignKey('UserModel'))
 
 	#Unicode method
 	def __unicode__(self):
@@ -59,9 +59,9 @@ class Profile(verifiable, models.Model):
 
 #UserModel
 class UserModel(Profile):
-	favorites = ListField(models.ForeignKey('ContentModel'))
-	garages = ListField(models.ForeignKey('GarageModel'))
-	following = ListField(models.ForeignKey('self'))
+	favorites = [] #ListField(models.ForeignKey('ContentModel'))
+	garages = [] #ListField(models.ForeignKey('GarageModel'))
+	following = [] #ListField(models.ForeignKey('self'))
 
 	# def getEmail(self):
 	# 	return email
@@ -116,7 +116,7 @@ class UserModel(Profile):
 
 #GarageModel
 class GarageModel(Profile):
-	members = ListField(models.ForeignKey('UserModel'))
+	members = [] #ListField(models.ForeignKey('UserModel'))
 
 	def addMember(self, user):
 		if user not in members:
