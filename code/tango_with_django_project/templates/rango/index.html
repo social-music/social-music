@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html>
+{% extends 'rango/base.html' %}
 
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-    </head>
+{% load staticfiles %}
 
-    <body>
-    	<div>
-    		{% block body_block %}{% endblock %}
-    	</div>
-    	
-    	<div>
-	        {% if user.is_authenticated %}
-	            <h1>Rango says... hello {{ user.username }}!</h1>
-	        {% else %}
-	            <h1>Rango says... hello world!</h1>
-	        {% endif %}
+{% block title %}Index{% endblock %}
 
-	        {% if user.is_authenticated %}
-	            <a href="/rango/restricted/">Restricted Page</a><br />
-	            <a href="/rango/logout/">Logout</a><br />
-	        {% else %}
-	            <a href="/rango/register/">Register Here</a><br />
-	            <a href="/rango/login/">Login</a><br />
-	        {% endif %}
-	    </div>
+{% block body_block %}
 
-        <a href="/rango/about/">About</a>
-    </body>
+    {% if user.is_authenticated %}
+        <h1>Rango says... hello {{ user.username }}!</h1>
+    {% else %}
+        <h1>Rango says... hello world!</h1>
+    {% endif %}
+    <p>This is index.html.<p>
 
-</html>
+{% endblock %}
+	   
