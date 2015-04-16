@@ -92,7 +92,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/rango/')
+                return HttpResponseRedirect('/rango/stream')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your Rango account is disabled.")
@@ -119,3 +119,7 @@ def user_logout(request):
     logout(request)
 
     return HttpResponseRedirect('/rango/')
+
+@login_required
+def stream(request):
+    return render(request, 'stream/index.html')
