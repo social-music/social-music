@@ -1,0 +1,14 @@
+/* Gray Color: #585656 */
+
+body {
+	background-color: #585656;
+}
+
+#body_div {
+	width: 100%;
+	height: 100%;
+}
+
+#text {
+	color: white;
+}
