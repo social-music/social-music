@@ -1,0 +1,24 @@
+/* Gray Color: #585656 */
+
+body {
+/*	background-color: #585656;
+*/
+	background-color: black;
+}
+
+/* Login and Sign Up */
+
+/* Navigation Bar (on left of page */
+#nav_bar {
+	width: 15%;
+	background-color: #585656;
+	font-size: 30px;
+}
+
+#nav_bar.div {
+	
+}
+
+#body_div {
+	color: white;
+}
