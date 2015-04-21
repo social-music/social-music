@@ -5,11 +5,14 @@
 {% block title %}Index{% endblock %}
 
 {% block body_block %}
+	<div>
+		<p id="text"> Oh hai </p>
+	</div>
 
     {% if user.is_authenticated %}
         <h1>Rango says... hello {{ user.username }}!</h1>
     {% else %}
-        <h1>Rango says... hello world!</h1>
+        <h1>Rango says... not authenticated</h1>
     {% endif %}
     <p>This is index.html.<p>
 
