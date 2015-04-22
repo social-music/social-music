@@ -13,3 +13,13 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserModel
         fields = ('website',)
+
+class UpdateUserForm(forms.ModelForm):
+	class Meta:
+		model = User
+		fields = ('first_name', 'last_name', 'email')
+
+class UpdateUserProfileForm(forms.ModelForm):
+	class Meta:
+		model = UserModel
+		fields = ('website',)

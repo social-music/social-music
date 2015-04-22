@@ -24,7 +24,7 @@ class verifiable(models.Model):
 #Profile
 class Profile(verifiable):
 	#Link Profile to a User model instance.
-	user = models.OneToOneField(User)
+	user = models.OneToOneField(User, related_name='profile')
 
 	#Additional attributes
 	website = models.URLField(blank=True)
