@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from rango.forms import UserForm, UserProfileForm
+from rango.models import StreamModel, ContentModel
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -122,4 +123,9 @@ def user_logout(request):
 
 @login_required
 def stream(request):
+    context_dict = {}
+
+    try:
+        contentItems = ContentModel.objects.get()
+        context_dict['contentItems'] = contentItems
     return render(request, 'stream/index.html')

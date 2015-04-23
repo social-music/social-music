@@ -129,8 +129,8 @@ class GarageModel(Profile):
 		return members
 
 #ContentModel
-class ContentModel():
-	uid = models.CharField(max_length=20, default=uuid.uuid4)
+class ContentModel(models.Model):
+	uid = models.CharField(max_length=20, default=uuid.uuid4, unique = True)
 	title = models.CharField(max_length=128)
 	artist = models.CharField(max_length=128)
 	genre = models.CharField(max_length=128)
@@ -140,6 +140,9 @@ class ContentModel():
 	favoritedBy = []
 	comments = []
 
+	def __unicode__(self):
+		return self.title
+		
 	def __init__(self):
 		uid = uuid.uuid4()
 
