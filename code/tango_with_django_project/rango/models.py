@@ -30,6 +30,9 @@ class Profile(verifiable):
 	ownedcontent = [] #ListField(models.ForeignKey('ContentModel'))
 	followers = [] #ListField(models.ForeignKey('UserModel'))
 
+	# Added ImageField for profile picture
+	picture = models.ImageField(upload_to='profile_images', blank=True, null=True)
+
 	#Unicode method
 	def __unicode__(self):
 		return self.user.username
