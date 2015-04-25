@@ -13,7 +13,7 @@
     		<p>Profile successfully updated!</p>
     	{% else %}
 
-	        <form id="user_form" method="post" action="/rango/update-profile/">
+	        <form id="user_form" method="post" action="/rango/update-profile/" enctype="multipart/form-data">>
 
 	            {% csrf_token %}
 

@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = ('website',)
+        fields = ('website','picture')
 
 class UpdateUserForm(forms.ModelForm):
 	class Meta:
@@ -22,4 +22,4 @@ class UpdateUserForm(forms.ModelForm):
 class UpdateUserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserModel
-		fields = ('website',)
+		fields = ('website','picture')

@@ -13,5 +13,8 @@
     <ul>
         <li>{{ user.email }}</li>
         <li>{{ user.profile.website }}</li>
+        {% if user.profile.picture %}
+        	<img src="{{ user.profile.picture.url }}" atl="Profile Picture" width="128" height="128" />
+        {% endif %}
     </ul>
 {% endblock %}

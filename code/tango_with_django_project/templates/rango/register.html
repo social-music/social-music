@@ -13,7 +13,7 @@
         <a href="/rango/">Return to the homepage.</a><br />
         {% else %}
 
-        <form id="user_form" method="post" action="/rango/register/">
+        <form id="user_form" method="post" action="/rango/register/" enctype="multipart/form-data">
 
             {% csrf_token %}
 
