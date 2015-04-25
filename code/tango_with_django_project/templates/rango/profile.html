@@ -5,13 +5,38 @@
 {% block title %}{{ user.username }}{% endblock %}
 
 {% block body_block %}
-    <h1>My Profile</h1>
+    <div id="side_navigation">
+    	<div class="side_container">
+			<img class="logo" src="{% static 'images/social_music_logo.svg' %}" alt="logo">
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'register' %}"> Garages </a>
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'profile' %}"> Profile </a>
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'logout' %}"> Log Out </a>
+		</div>
+    </div>
 
-    <p><a href="{% url 'update-profile' %}">Update Profile</a></p>
+    <div id="top_bar">
+    	<div id="upper_top_bar">
+	    	<p id="page_title"> Profile </p>
+	    	<a href="{% url 'update-profile' %}">Update Profile</a>
+		</div>
+		<div id="lower_top_bar">
+			<p class="name"> {{ user.first_name }} {{ user.last_name }} </p>
+			<ul>
+		        <li>{{ user.email }}</li>
+		        <li>{{ user.profile.website }}</li>
+		    </ul>
+		</div>
+    </div>
 
-    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-    <ul>
-        <li>{{ user.email }}</li>
-        <li>{{ user.profile.website }}</li>
-    </ul>
+    <div id="profile_area">
+    	Profile Stream Stuff goes here
+    </div>
+
+    
 {% endblock %}

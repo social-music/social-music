@@ -1,4 +1,4 @@
-/* Gray Color: #585656 */
+ Gray Color: #585656 */
 
 /* Main Styles */
 * {
@@ -7,20 +7,75 @@
 }
 
 body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+#sign_in, #register {
+	width: 100%;
+	height: 100%;
 	background-color: #585656;
 	color: white;
-	width: 100%;
-	height: 100%;
 }
 
-a {
+/*Side Navigation */
+#side_navigation {
+	background-color: #585656;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 15%;
+	height: 1200px;
+	border-right-style: solid;
+	border-right-width: 5px;
+	border-right-color: #1db92d;
+	text-align: center;
+}
+
+.side_container {
+	height: 100px;
+	margin-bottom: 50px;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	border-bottom-color: #1db92d;
+}
+
+.nav_bar_link {
+	font-size: 36px;
+	text-decoration: none;
 	color: white;
 }
 
-#body_div {
-	width: 100%;
+/* Top Bar */
+#top_bar {
+	width: 85%;
 	height: 100%;
+	position: absolute;
+	right: 0px;
+	top: 0px;
 }
+
+#upper_top_bar {
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	border-bottom-color: #1db92d;
+}
+
+#page_title {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-left: 5%;
+	font-size: 48px;
+	color: #1db92d;
+}
+
+#upper_top_bar a {
+	float: right;
+}
+
 /* Sign In and Sign up*/
 #sign_in, #register {
 	width: 20%;
@@ -86,6 +141,5 @@ input {
 	display: none;
 }
 
-#text {
-	color: white;
-}
+/* Profile Page */
+
