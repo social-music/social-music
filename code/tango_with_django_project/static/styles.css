@@ -93,6 +93,10 @@ body {
 	color: #1db92d;
 }
 
+#profile_info li {
+	list-style-type: none;
+}
+
 /* Sign In and Sign up*/
 #sign_in, #register {
 	width: 20%;
