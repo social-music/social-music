@@ -1,0 +1,17 @@
+{% extends 'rango/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body_block %}
+    <h1>My Profile</h1>
+
+    <p><a href="{% url 'update-profile' %}">Update Profile</a></p>
+
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+    <ul>
+        <li>{{ user.email }}</li>
+        <li>{{ user.profile.website }}</li>
+    </ul>
+{% endblock %}
