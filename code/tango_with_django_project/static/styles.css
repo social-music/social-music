@@ -26,7 +26,7 @@ body {
 	top: 0px;
 	left: 0px;
 	width: 15%;
-	height: 1200px;
+	height: 100%;
 	border-right-style: solid;
 	border-right-width: 5px;
 	border-right-color: #1db92d;
@@ -64,16 +64,33 @@ body {
 	border-bottom-color: #1db92d;
 }
 
+#lower_top_bar {
+	margin-left: 2%;
+}
+
+#lower_top_bar a {
+	font-size: 20px;
+	text-decoration: none;
+	color: black;
+}
+
 #page_title {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	padding-left: 5%;
 	font-size: 48px;
 	color: #1db92d;
+	width: 25%;
 }
 
-#upper_top_bar a {
-	float: right;
+#update_profile {
+	/*position: absolute;
+	right: 0px;*/
+}
+
+.name {
+	font-size: 36px;
+	color: #1db92d;
 }
 
 /* Sign In and Sign up*/
@@ -109,7 +126,6 @@ body {
     clear: both;
     float: none;
     font-size: 18px;
-    color: white;
     border-style: solid;
     font-weight: 300;
     border-width: 3px;

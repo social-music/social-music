@@ -23,15 +23,15 @@
     <div id="top_bar">
     	<div id="upper_top_bar">
 	    	<p id="page_title"> Profile </p>
-	    	<a href="{% url 'update-profile' %}">Update Profile</a>
+	    	
 		</div>
 		<div id="lower_top_bar">
-			<p class="name"> {{ user.first_name }} {{ user.last_name }} </p>
+			<p> Name: <span class="name"> {{ user.first_name }} {{ user.last_name }} </span> <a class="button" href="{% url 'update-profile' %}">Update Profile</a> </p>
 			<ul>
 		        <li>{{ user.email }}</li>
 		        <li>{{ user.profile.website }}</li>
 		        {% if user.profile.picture %}
-		        	<img src="{{ user.profile.picture.url }}" atl="Profile Picture" width="128" height="128" />
+		        	<img src="{{ user.profile.picture.url }}" alt="Profile Picture" width="128" height="128" />
 		        {% endif %}
 		    </ul>
 		</div>
