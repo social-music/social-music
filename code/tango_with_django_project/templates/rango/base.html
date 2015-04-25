@@ -15,17 +15,17 @@
 
         <hr />
 
-        <!-- <div>
+        <div>
 	        <ul>
 		    {% if user.is_authenticated %}
-		        <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
+		        <li><a href="{% url 'upload' %}">Upload</a></li>
 		        <li><a href="{% url 'profile' %}">My Profile</a></li>
 		        <li><a href="{% url 'logout' %}">Logout</a></li>
 		    {% else %}
-		        <li><a href="{% url 'register' %}">Register Here</a></li>
+		        <li><a href="{% url 'register' %}">Register</a></li>
 		        <li><a href="{% url 'login' %}">Login</a></li>
 		    {% endif %}
 		    </ul>
-		</div> -->
+		</div>
     </body>
 </html>
