@@ -8,13 +8,32 @@
     <h1>My Profile</h1>
 
     <p><a href="{% url 'update-profile' %}">Update Profile</a></p>
-
+    {% if user.profile.picture %}
+            <img src="{{ user.profile.picture.url }}" atl="Profile Picture" width="128" height="128" />
+    {% endif %}
     <h2>{{ user.first_name }} {{ user.last_name }}</h2>
     <ul>
         <li>{{ user.email }}</li>
         <li>{{ user.profile.website }}</li>
-        {% if user.profile.picture %}
-        	<img src="{{ user.profile.picture.url }}" atl="Profile Picture" width="128" height="128" />
-        {% endif %}
     </ul>
+
+    <div id="personalStrem">
+    {% if content_list %}
+        {% for content in content_list %}
+        <div class="streamItem">
+            <h2>{{ content.title }}</h2>
+            <h3>{{ content.artist }}</h3>
+
+            <p>Genre: {{ content.genre }}</p>
+            <p>{{ content.description }}</p>
+            <p>{{ content.album }}</p>
+            <p>{{ content.website }}</p>
+             <audio controls>
+              <source src="{{ content.media.mediaFile.url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+            </audio> 
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
 {% endblock %}
