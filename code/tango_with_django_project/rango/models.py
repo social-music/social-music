@@ -295,36 +295,36 @@ class SheetMusic(Media):
 		key = k
 
 # Comment
-class CommentModel(Content):
-    uid = models.CharField(default=uuid.uuid4)
-    author = UserModel()
-    comment = models.CharField()
-    timestamp = models.DateTimeField()
+class CommentModel(ContentModel):
+	uid = models.CharField(default=uuid.uuid4)
+	author = UserModel()
+	comment = models.CharField()
+	timestamp = models.DateTimeField()
 
 	def __init__(self):
-	    uid = uuid.uuid4()
+		uid = uuid.uuid4()
 
 	def __init__(self, newID):
-	    uid = newId
+		uid = newId
 
 	def getId():
-	    return uid
+		return uid
 
 	def getAuthor():
-	    return author
+		return author
 
 	def setAuthor(newAuthor):
-	    author = newAuthor
+		author = newAuthor
 
 	def getComment():
-	    return comment
+		return comment
 
 	def setComment(newComment):
-	    comment = newComment
+		comment = newComment
 
 	def getTimeStamp():
-	    return timestamp
+		return timestamp
 
 	def setTimeStamp():
-	    currTime = time.time()
-	        timestamp = datetime.datetime.fromtimestamp(currTime).strftime('%Y-%m-%d %H:%M:%S')
+		currTime = time.time()
+		timestamp = datetime.datetime.fromtimestamp(currTime).strftime('%Y-%m-%d %H:%M:%S')
