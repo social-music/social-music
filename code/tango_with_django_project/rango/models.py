@@ -131,84 +131,29 @@ class GarageModel(Profile):
 	def getMembers(self):
 		return members
 
-#ContentModel
-class ContentModel():
-	uid = models.CharField(max_length=20, default=uuid.uuid4)
-	title = models.CharField(max_length=128)
-	artist = models.CharField(max_length=128)
-	genre = models.CharField(max_length=128)
-	description = models.CharField(max_length=128)
-	album = models.CharField(max_length=128)	
-	website = models.URLField()
-	favoritedBy = []
-	comments = []
 
-	def __init__(self):
-		uid = uuid.uuid4()
 
-	def __init__(self, uid):
-		uid = uid
+# Media
+class Media(models.Model):
+	mediaFile = models.FileField(upload_to='mediaFiles', blank=True, null=False)
 
-	def getId(self):
-		return uid
+class Audio(Media):
+	numPlays = models.IntegerField(default=0)
 
-	def getTitle(self):
-		return title
+class Tab(Media):
+	CHORDS = "0"
+	TABS = "1"
+	TYPE_CHOICES = (
+		(CHORDS,"Chords"),
+		(TABS,"Tabs"),
+		)
 
-	def setTitle(self, n):
-		title = n
+	tabType = models.CharField(max_length=180, choices=TYPE_CHOICES, default=CHORDS)
+	key = models.CharField(max_length=180)
 
-	def getArtist(self):
-		return artist
-
-	def setArtist(self, profile):
-		artist = profile
-
-	def getGenre(self):
-		return genre 
-
-	def setGenre(self, n):
-		genre = n
-
-	def getDescription(self):
-		return description
-
-	def setDescription(self, n):
-		description = n 
-
-	def getAlbum(self):
-		return album
-
-	def setAlbum(self, n):
-		album = name
-
-	def getMedia(self):
-		return media
-
-	def setMedia(self, n):
-		media = n
-
-	def addFavoritedBy(self, user):
-		if user not in FavoritedBy:
-			favoritedBy.append(user)
-
-	def removeFavoritedBy():
-		if user in FavoritedBy:
-			favoritedBy.remove(user)
-
-	def getFavoritedBy():
-		return favoritedBy
-
-	def addComment(comment):
-		if comment not in comments:
-			comments.append(comment)
-
-	def removeComment():
-		if comment in comments:
-			comments.remove(comment)
-
-	def getComments(self):
-		return comments
+class SheetMusic(Media):
+	instrument = models.CharField(max_length=180)
+	key = models.CharField(max_length=180)
 
 # stream
 class StreamModel(models.Model):
@@ -228,68 +173,19 @@ class StreamModel(models.Model):
  	def sort(self, value):
  		sortBy = value
 
-# Media
-class Media(models.Model):
-	filename = models.CharField(max_length=180)
-	uid = models.CharField(max_length=20, default=uuid.uuid4)
+ #ContentModel
+class ContentModel(verifiable):
+	title = models.CharField(max_length=128)
+	artist = models.CharField(max_length=128)
+	genre = models.CharField(max_length=128)
+	description = models.CharField(max_length=128)
+	album = models.CharField(max_length=128)	
+	website = models.URLField()
+	upload_date = models.DateTimeField(auto_now_add=True)
+	favoritedBy = []
+	comments = []
+	owner = models.ForeignKey(Profile, related_name="content")
+	media = models.OneToOneField(Media, related_name="media")
 
-	def __init__(self, uid, fn):
-		self.uid = uid
-		filename = fn
-
-	def getFilename(self):
-		return filename
-
-	def setFilename(self, fn):
-		filename = fn
-
-	def getId(self):
-		return uid
-
-class Audio(Media):
-	numPlays = models.IntegerField(default=0)
-
-	def getNumPlays(self):
-		return numPlays
-
-	def addPlay(self):
-		numPlays += 1
-
-class Tab(Media):
-	CHORDS = "0"
-	TABS = "1"
-	TYPE_CHOICES = (
-		(CHORDS,"Chords"),
-		(TABS,"Tabs"),
-		)
-
-	type = models.CharField(max_length=180, choices=TYPE_CHOICES, default=CHORDS)
-	key = models.CharField(max_length=180)
-
-	def getType(self):
-		return type
-
-	def setType(self, t):
-		type = t
-
-	def getKey(self):
-		return key
-
-	def setKey(self, k):
-		key = k
-
-class SheetMusic(Media):
-	instrument = models.CharField(max_length=180)
-	key = models.CharField(max_length=180)
-
-	def getInstrument(self):
-		return instrument
-
-	def setInstrument(self, inst):
-		instrument = inst
-
-	def getKey(self):
-		return key
-
-	def setKey(self, k):
-		key = k
+	class Meta:
+		ordering = ('upload_date', 'title')

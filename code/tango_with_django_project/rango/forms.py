@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from rango.models import UserModel
+from rango.models import UserModel, ContentModel, Audio
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -23,3 +23,13 @@ class UpdateUserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserModel
 		fields = ('website','picture')
+
+class UploadContentForm(forms.ModelForm):
+    class Meta:
+        model = ContentModel
+        fields = ('title', 'artist', 'genre', 'description', 'album', 'website')
+
+class UploadMusicForm(forms.ModelForm):
+    class Meta:
+        model = Audio
+        fields = ('mediaFile',)

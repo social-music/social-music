@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from rango.forms import UserForm, UserProfileForm, UpdateUserForm, UpdateUserProfileForm
+from rango.forms import *
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -128,7 +128,9 @@ def user_logout(request):
 @login_required
 def profile(request):
 
-    return render(request, 'rango/profile.html', {})
+    content = ContentModel.objects.filter(owner=request.user.profile)
+
+    return render(request, 'rango/profile.html', {"content_list" : content})
 
 @login_required
 def updateProfile(request):
@@ -176,3 +178,55 @@ def updateProfile(request):
     return render(request,
             'rango/update-profile.html',
             {"user_form": user_form, "profile_form": profile_form, "updated" : updated})
+@login_required
+def upload(request):
+
+    # A boolean value for telling the template whether the registration was successful.
+    # Set to False initially. Code changes value to True when registration succeeds.
+    uploaded = False
+
+    # If it's a HTTP POST, we're interested in processing form data.
+    if request.method == 'POST':
+        # Attempt to grab information from the raw form information.
+        # Note that we make use of both UserForm and UserProfileForm.
+        content_form = UploadContentForm(data=request.POST)
+        audio_form = UploadMusicForm(data=request.POST)
+
+        # If the two forms are valid...
+        if content_form.is_valid() and audio_form.is_valid():
+            # Save the user's form data to the database.
+            content = content_form.save(commit=False)
+            content.owner = request.user.profile
+
+            # Now sort out the UserProfile instance.
+            # Since we need to set the user attribute ourselves, we set commit=False.
+            # This delays saving the model until we're ready to avoid integrity problems.
+            audio = audio_form.save(commit=False)
+
+            audio.mediaFile = request.FILES['mediaFile']
+
+            # Now we save the UserProfile model instance.
+            audio.save()
+
+            content.media = audio
+            content.save()
+
+            # Update our variable to tell the template registration was successful.
+            uploaded = True
+
+        # Invalid form or forms - mistakes or something else?
+        # Print problems to the terminal.
+        # They'll also be shown to the user.
+        else:
+            print content_form.errors, audio_form.errors
+
+    # Not a HTTP POST, so we render our form using two ModelForm instances.
+    # These forms will be blank, ready for user input.
+    else:
+        content_form = UploadContentForm()
+        audio_form = UploadMusicForm()
+
+    # Render the template depending on the context.
+    return render(request,
+            'rango/upload.html',
+            {'content_form': content_form, 'audio_form': audio_form, 'uploaded': uploaded} )
