@@ -1,0 +1,29 @@
+{% extends 'rango/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Upload{% endblock %}
+
+{% block body_block %}
+    <div id="upload">
+        <h1>Upload Content</h1>
+        {% if uploaded %}
+        <div>
+            <p>Your file has been uploaded.</p>
+            <a href="/rango/">Return to the homepage.</a><br />
+        </div>
+        {% else %}
+
+        <form id="upload_form" method="post" action="/rango/upload/" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            
+            {{ content_form.as_p }}
+            {{ audio_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input class="button" type="submit" name="submit" value="Upload" />
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}
