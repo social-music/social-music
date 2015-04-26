@@ -294,7 +294,7 @@ class SheetMusic(Media):
 	def setKey(self, k):
 		key = k
 
-# Comment
+Comment
 class CommentModel(Content):
     uid = models.CharField(default=uuid.uuid4)
     author = UserModel()
