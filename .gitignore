@@ -56,3 +56,6 @@ target/
 .DS_STORE
 *.db
 *.sqlite3
+
+*.jpg
+*.mp3
