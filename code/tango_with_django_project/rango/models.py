@@ -182,8 +182,6 @@ class ContentModel(verifiable):
     album = models.CharField(max_length=128)    
     website = models.URLField()
     upload_date = models.DateTimeField(auto_now_add=True)
-    favoritedBy = []
-    comments = []
     owner = models.ForeignKey(Profile, related_name="content")
     media = models.OneToOneField(Media, related_name="media")
 

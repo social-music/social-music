@@ -143,7 +143,7 @@ def updateProfile(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UpdateUserForm(data=request.POST, instance=request.user)
-        profile_form = UpdateUserProfileForm(data=request.POST, instance=request.user)
+        profile_form = UpdateUserProfileForm(data=request.POST, instance=request.user.profile)
 
         # If the two forms are valid...
         if user_form.is_valid() and profile_form.is_valid():
