@@ -174,7 +174,16 @@ input {
 }
 
 /* Stream */
-#profile_area {
+.stream_content_area {
+	background-color: white;
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	height: 80%;
+	width: 85%;
+}
+
+#stream {
 	background-color: white;
 	position: absolute;
 	top: 20%;
@@ -194,6 +203,18 @@ input {
 .item_name {
 	color: #1db92d;
 	font-size: 30px;
+}
+
+#no_auth {
+	background-color: #585656;
+	position: absolute;
+	top: 0px;
+	left: 15%;
+}
+
+.no_auth_text {
+	padding-left: 50px;
+	color: white;
 }
 
 .helptext {
