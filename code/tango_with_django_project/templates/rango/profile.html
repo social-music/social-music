@@ -7,7 +7,7 @@
 {% block body_block %}
     <div id="side_navigation">
     	<div class="side_container">
-			<img class="logo" src="{% static 'images/social_music_logo.svg' %}" alt="logo">
+			<img class="logo" href="/rango/index" src="{% static 'images/social_music_logo.svg' %}" alt="logo">
 		</div>
 		<div class="side_container">
 			<a class="nav_bar_link" href="{% url 'register' %}"> Garages </a>
@@ -22,8 +22,8 @@
 
     <div id="top_bar">
     	<div id="upper_top_bar">
-	    	<p id="page_title"> Profile </p>
-	    	
+	    	<span id="page_title"> Profile </span>
+	    	<a id="upload_button" class="button" href="/rango/upload"> Upload </a>
 		</div>
 		<div id="lower_top_bar">
 			<span class="name"> {{ user.first_name }} {{ user.last_name }} </span> <a class="button" href="{% url 'update-profile' %}">Update Profile</a>
@@ -40,14 +40,11 @@
     <div id="profile_area">
     	{% if content_list %}
             {% for content in content_list %}
-            <div class="streamItem">
-                <h2>{{ content.title }}</h2>
-                <h3>{{ content.artist }}</h3>
+            <div class="stream_item">
+                <p> <span class="item_name"> {{ content.title }} </span> by {{ content.artist }} on {{ content.album }} </p>
 
                 <p>Genre: {{ content.genre }}</p>
-                <p>{{ content.description }}</p>
-                <p>{{ content.album }}</p>
-                <p>{{ content.website }}</p>
+                <p>Description: {{ content.description }}</p>
                  <audio controls>
                   <source src="{{ content.media.mediaFile.url }}" type="audio/mpeg">
                 Your browser does not support the audio element.
