@@ -91,13 +91,15 @@ body {
 #upload_button {
 	float: right;
 	margin-right: 50px;
-	margin-top: 15px;
+	margin-top: -30px;
 	width: 10%;
 }
 
-#update_profile {
-	/*position: absolute;
-	right: 0px;*/
+#update_button {
+	float: right;
+	margin-right: 200px;
+	margin-top: 15px;
+	width: 10%; 
 }
 
 .name {
