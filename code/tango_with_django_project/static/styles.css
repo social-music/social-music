@@ -17,9 +17,7 @@ body {
 	color: white;
 }
 
-#sign_in, #register {
-	width: 100%;
-	height: 100%;
+#sign_in, #register, #upload {
 	background-color: #585656;
 	color: white;
 }
@@ -36,6 +34,7 @@ body {
 	border-right-width: 5px;
 	border-right-color: #1db92d;
 	text-align: center;
+	z-index: 4
 }
 
 .side_container {
@@ -58,7 +57,7 @@ body {
 #top_bar {
 	background-color: white;
 	width: 85%;
-	height: 100%;
+	height: 20%;
 	position: absolute;
 	right: 0px;
 	top: 0px;
@@ -74,7 +73,7 @@ body {
 	margin-left: 2%;
 }
 
-#lower_top_bar a {
+#top_bar a {
 	font-size: 20px;
 	text-decoration: none;
 	color: black;
@@ -87,6 +86,13 @@ body {
 	font-size: 48px;
 	color: #1db92d;
 	width: 25%;
+}
+
+#upload_button {
+	float: right;
+	margin-right: 50px;
+	margin-top: 15px;
+	width: 10%;
 }
 
 #update_profile {
@@ -104,7 +110,7 @@ body {
 }
 
 /* Sign In and Sign up*/
-#sign_in, #register, #update {
+#sign_in, #register, #update, #upload {
 	width: 20%;
 	height: 100%;
 	margin: auto;
@@ -122,7 +128,7 @@ body {
 	padding: 4px;
 }
 
-.input_sizing_box, #user_form p {
+.input_sizing_box, #user_form p, #upload_form p {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	margin-left: auto;
@@ -160,11 +166,34 @@ input {
 	float: left;
 }
 
-.login_header {
+.input_header {
 	text-decoration: underline;
 	font-size: 48px;
 	text-align: center;
 	font-weight: 100;
+}
+
+/* Stream */
+#profile_area {
+	background-color: white;
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	height: 80%;
+	width: 85%;
+}
+
+.stream_item {
+	padding-left: 10%;
+	font-size: 24px;
+	border-bottom-style: dashed;
+	border-bottom-width: 3px;
+	border-bottom-color: #1db92d;
+}
+
+.item_name {
+	color: #1db92d;
+	font-size: 30px;
 }
 
 .helptext {

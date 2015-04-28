@@ -6,11 +6,13 @@
 
 {% block body_block %}
     <div id="upload">
-        <h1>Upload Content</h1>
+        <img class="logo" src="{% static 'images/social_music_logo.svg' %}" alt="logo"> 
+        <h1 class="input_header"> Upload Content </h1>
+
         {% if uploaded %}
         <div>
-            <p>Your file has been uploaded.</p>
-            <a href="/rango/">Return to the homepage.</a><br />
+            <strong>Your file has been uploaded.</strong>
+            <a href="/rango/">Return to the homepage.</a> <br/>
         </div>
         {% else %}
 
