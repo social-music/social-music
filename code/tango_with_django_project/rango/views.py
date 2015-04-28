@@ -123,7 +123,7 @@ from django.contrib.auth import logout
 def user_logout(request):
     logout(request)
 
-    return HttpResponseRedirect('/rango/')
+    return HttpResponseRedirect('/rango/login')
 
 @login_required
 def profile(request):
