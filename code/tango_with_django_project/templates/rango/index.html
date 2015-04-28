@@ -5,10 +5,45 @@
 {% block title %}Stream{% endblock %}
 
 {% block body_block %}
+	<div id="side_navigation">
+    	<div class="side_container">
+			<img class="logo" href="/rango/index" src="{% static 'images/social_music_logo.svg' %}" alt="logo">
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'register' %}"> Garages </a>
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'profile' %}"> Profile </a>
+		</div>
+		<div class="side_container">
+			<a class="nav_bar_link" href="{% url 'logout' %}"> Log Out </a>
+		</div>
+    </div>
     {% if user.is_authenticated %}
-        <h1>{{ user.username }}!</h1>
-    {% else %}
-        <h1>Rango says... not authenticated</h1>
-    {% endif %}
+    <div id="top_bar">
+	    	<span id="page_title"> Stream </span>
+		</div>
+    <div id="stream">
+	    <div id="stream_content_area">
+    	{% if content_list %}
+            {% for content in content_list %}
+            <div class="stream_item">
+                <p> <span class="item_name"> {{ content.title }} </span> by {{ content.artist }} on {{ content.album }} </p>
+                <p>Genre: {{ content.genre }}</p>
+                <p>Description: {{ content.description }}</p>
+                 <audio controls>
+                  <source src="{{ content.media.mediaFile.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+                </audio> 
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div> 
+	    {% else %}
+	    <div id="no_auth">
+	        <h1 class="no_auth_text">Rango says... not authenticated</h1>
+        </div>
+	    {% endif %}
+    </div>
 {% endblock %}
 	   
